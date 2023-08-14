@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payments for {{ name.name }}</title>
+  <style>
+    *{
+     font-family: 'Gilroy';
+   }
+
+   .tolov{
+     margin-top: 50px;
+     border: 1px solid black;
+     width: 30%;
+     padding: 20px;
+     font-size: 20px;
+     border-radius: 15px;
+     cursor: pointer;
+   }
+  </style>
+</head>
+<body>
+    <center>
+      <h1>{{ name.name }}'s payments</h1>
+      <hr>
+      <div class="tolovs">
+      {%for i in tolov%}
+          <center>
+            <div class="tolov">
+              <h1 style="color: red;">{{i.lesson.name}}</h1>
+              <h1>{{i.date}}</h1>
+              {%if i.is_paid%}
+              <h2>Paid for this month</h2>
+              {%else%}
+              <h2>Not paid yet</h2>
+              {%endif%}
+            </div>
+          </center>
+      {%endfor%}
+      </div>
+    </center>
+</body>
+</html>

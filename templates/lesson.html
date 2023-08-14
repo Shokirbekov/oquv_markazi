@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ lesson.name }} Lesson</title>
+    <style>
+        * {
+            font-family: 'Gilroy';
+        }
+
+        .results {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .month-group {
+            border: 1px solid black;
+            padding: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 70%;
+            margin-bottom: 40px;
+        }
+
+        .day-group {
+            margin-top: 80px;
+            border: 1px solid black;
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 50%;
+            margin-bottom: 20px;
+        }
+
+        .date-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>{{ lesson.name }}</h1>
+        <hr>
+        <br>
+        <center>
+            <h1>Here are your results from: <span style="color: red;">{{ lesson.name }}</span></h1>
+            <div class="results">
+                <br>
+                {% if grade %}
+                    {% regroup grade by day|date:"F Y" as month_list %}
+
+                    {% for month_group in month_list %}
+                        <div class="month-group">
+                            <h2 class="date-header">Grades for {{ month_group.grouper }}</h2>
+                            {% regroup month_group.list by day|date:"F j, Y" as day_list %}
+                            {% for day_group in day_list %}
+                                <div class="day-group">
+                                    <h3 class="date-header">Grades for {{ day_group.grouper }}</h3>
+                                    <br>
+                                    <ul style="list-style: none; margin-right: 50px;">
+                                        {% for item in day_group.list %}
+                                            <li>
+                                                <h1><span style="color: red">{{ forloop.parentloop.parentloop.counter }}:</span> {{ item.grade }}</h1>
+                                                <h2>{{ item.type }}</h2>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No grades available.</p>
+                {% endif %}
+            </div>
+        </center>
+    </center>
+</body>
+</html>

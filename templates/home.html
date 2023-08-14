@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <style>
+        *{
+            font-family: 'Gilroy';
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Hello <a href="/profile/">{{data.name}}!</a></h1>
+        <br>
+        <hr>
+        <br>
+        <h1>Your lessons</h1>
+        <br>
+        {%for i in lesson%}
+            <h1><span>{{forloop.counter}}. </span><a href="/lesson/{{i.lesson.id}}/">{{i.klass.name}}</a></h1>
+        {%endfor%}
+        <br>
+        <hr>
+        <br>
+        <h1><a href="/payments/">Check your payments</a></h1>
+    </center>
+</body>
+</html>

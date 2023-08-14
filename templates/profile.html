@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{profile.name}}</title>
+    <style>
+        *{
+            font-family: 'Gilroy';
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Hello {{profile.name}}. Here is your profile!</h1>
+        <br>
+        <hr>
+        <br>
+        <h1>Here are your active lessons:</h1>
+        <div class="lessons">
+            {%for i in lesson%}
+                <h1><span style="color: blue">{{forloop.counter}}</span>. {{i.lesson.name}}: <span style="color: red">{{i.klass.name}}</span></h1>
+            {%endfor%}
+        </div>
+    </center>
+</body>
+</html>
